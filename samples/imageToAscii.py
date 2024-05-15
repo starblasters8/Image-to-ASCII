@@ -5,7 +5,7 @@ import json
 import os
 
 # Number of characters in each line
-width = 300
+width = 500
 
 # Load the dictionary
 with open("charDict.json", "r") as f:
@@ -35,7 +35,7 @@ for file in os.listdir(imgPath):
             pixel = img.getpixel((x, y))
             
             # Get the closest key in the dictionary
-            closestKey = min(charDict.keys(), key=lambda key: abs(int(key) - (255-pixel)))
+            closestKey = min(charDict.keys(), key=lambda key: abs(float(key)-(255.0-pixel)))
             asciiArt += charDict[closestKey]
 
         asciiArt += "\n"

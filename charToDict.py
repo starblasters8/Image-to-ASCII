@@ -27,7 +27,7 @@ for key in charDict:
 maxWhite = max(charDict.keys())
 newCharDict = {}
 for key in charDict:
-    newCharDict[int((key / maxWhite) * 255)] = charDict[key]
+    newCharDict[round((key / maxWhite) * 255, 4)] = charDict[key]
 
 # Export as .json
 with open("charDict.json", "w") as f:

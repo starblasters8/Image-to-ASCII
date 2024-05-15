@@ -1,4 +1,3 @@
-# Ascii characters 32-126
 # Creates a .png file of each character in folder /chars
 
 import os
@@ -11,9 +10,10 @@ if not os.path.exists(folder):
 
 range_start = 32
 range_end = 127
+additional = []
 ignore = [92]
 
-for i in range(range_start, range_end):
+for i in range(range_start, range_end) and additional:
     if i not in ignore:
         img = Image.new('RGB', (100, 100), color = (0, 0, 0))
         d = ImageDraw.Draw(img)

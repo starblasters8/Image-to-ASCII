@@ -7,7 +7,7 @@ import json
 width = 300
 
 # Image path
-imgPath = "samples/2.png"
+imgPath = "samples/input/2.png"
 outPath = "asciiArt.txt"
 
 # Load the dictionary
@@ -22,7 +22,6 @@ img = img.convert("L")
 aspectRatio = (2*img.width) / img.height
 img = img.resize((width, int(width / aspectRatio)))
 
-
 # Convert the image to ascii
 asciiArt = ""
 for y in range(img.height):
@@ -30,7 +29,7 @@ for y in range(img.height):
         pixel = img.getpixel((x, y))
         
         # Get the closest key in the dictionary
-        closestKey = min(charDict.keys(), key=lambda key: abs(int(key) - (255-pixel)))
+        closestKey = min(charDict.keys(), key=lambda key: abs(float(key)-(255.0-pixel)))
         asciiArt += charDict[closestKey]
 
     asciiArt += "\n"
