@@ -4,7 +4,7 @@ from PIL import Image
 import json
 
 # Number of characters in each line
-width = 500
+width = 300
 
 # Image path
 imgPath = "samples/2.png"
