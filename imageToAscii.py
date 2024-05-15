@@ -19,7 +19,7 @@ img = Image.open(imgPath)
 img = img.convert("L")
 
 # Resize the image
-aspectRatio = img.width / img.height
+aspectRatio = (2*img.width) / img.height
 img = img.resize((width, int(width / aspectRatio)))
 
 
@@ -31,7 +31,7 @@ for y in range(img.height):
         
         # Get the closest key in the dictionary
         closestKey = min(charDict.keys(), key=lambda key: abs(int(key) - (255-pixel)))
-        asciiArt += 2 * charDict[closestKey]
+        asciiArt += charDict[closestKey]
 
     asciiArt += "\n"
 
