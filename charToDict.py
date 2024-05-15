@@ -23,11 +23,12 @@ for key in charDict:
     if list(charDict).count(key) > 1:
         print(f"Duplicate key: {key}")
 
-# Scale from 0-1
+# Scale 0 and 255 and make a new dictionary
 maxWhite = max(charDict.keys())
+newCharDict = {}
 for key in charDict:
-    charDict[key] = charDict[key], key / maxWhite
+    newCharDict[int((key / maxWhite) * 255)] = charDict[key]
 
 # Export as .json
 with open("charDict.json", "w") as f:
-    json.dump(charDict, f, indent=4)
+    json.dump(newCharDict, f, indent=4)
