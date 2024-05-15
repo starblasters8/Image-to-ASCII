@@ -7,6 +7,10 @@ import os
 # Number of characters in each line
 width = 500
 
+clamp = True
+mult = 1.0
+sub = 0.0
+
 # Load the dictionary
 with open("charDict.json", "r") as f:
     charDict = json.load(f)
@@ -27,12 +31,28 @@ for file in os.listdir(imgPath):
     aspectRatio = (2*img.width) / img.height
     img = img.resize((width, int(width / aspectRatio)))
 
+    # Clamp the image
+    if clamp:
+        # Find the min and max pixel values
+        minVal = 255
+        maxVal = 0
+
+        for y in range(img.height):
+            for x in range(img.width):
+                pixel = img.getpixel((x, y))
+                minVal = min(minVal, pixel)
+                maxVal = max(maxVal, pixel)
+
+        sub = minVal
+        mult = 255.0 / maxVal
+
 
     # Convert the image to ascii
     asciiArt = ""
     for y in range(img.height):
         for x in range(img.width):
             pixel = img.getpixel((x, y))
+            pixel = (pixel-sub)*mult
             
             # Get the closest key in the dictionary
             closestKey = min(charDict.keys(), key=lambda key: abs(float(key)-(255.0-pixel)))
