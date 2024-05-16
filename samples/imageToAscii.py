@@ -26,7 +26,6 @@ for file in os.listdir(imgPath):
     img = Image.open(imgPath+file)
     img = img.convert("L")
 
-
     # Resize the image
     aspectRatio = (2*img.width) / img.height
     img = img.resize((width, int(width / aspectRatio)))
@@ -45,7 +44,6 @@ for file in os.listdir(imgPath):
 
         sub = minVal
         mult = 255.0 / maxVal
-
 
     # Convert the image to ascii
     asciiArt = ""
